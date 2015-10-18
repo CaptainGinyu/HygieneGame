@@ -17,9 +17,13 @@ public class BulletItemController : Item
 	{
 		if (other.tag == "Enemy")
 		{
-			if (other.gameObject.GetComponent<EnemyController>().nameOfThis == whatThisKills)
+			EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
+			if (enemy.nameOfThis == whatThisKills)
 			{
 				Destroy(other.gameObject);
+				GameController.score += enemy.pointsGivenIfKilled;
+				GameController.UpdateScoreText();
+				GameController.numKills++;
 			}
 			Destroy(gameObject);
 		}

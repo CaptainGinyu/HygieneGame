@@ -5,6 +5,7 @@ public class EnemyController : NPCController
 {
 	public float damageThisGives;
 	public float delayBetweenDamages;
+	public float pointsGivenIfKilled;
 	
 	private float timeUntilNextDamage;
 	
@@ -19,9 +20,8 @@ public class EnemyController : NPCController
 	{
 		if (other.tag == "Player")
 		{
-			PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-			playerController.health -= damageThisGives;
-			playerController.updateHealthText();
+			PlayerController.health -= damageThisGives;
+			GameController.UpdateHealthText();
 			timeUntilNextDamage = Time.time + delayBetweenDamages;
 		}
 	}
@@ -30,12 +30,10 @@ public class EnemyController : NPCController
 	{
 		if (other.tag == "Player")
 		{
-			PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-
 			if (Time.time > timeUntilNextDamage)
 			{
-				playerController.health -= damageThisGives;
-				playerController.updateHealthText();
+				PlayerController.health -= damageThisGives;
+				GameController.UpdateHealthText();
 				timeUntilNextDamage = Time.time + delayBetweenDamages;
 			}
 		}

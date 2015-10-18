@@ -4,22 +4,40 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-	//TODO: transfer the health and healthText from PlayerController here
-	public float health;
-	public float score;
 
-	private Text healthText;
-	private Text scoreText;
+	public static float score;
+	public static int numKills;
 
-	// Use this for initialization
-	void Start ()
-	{
+	private static Text healthText;
+	private static Text scoreText;
 	
+	void Start()
+	{
+		healthText = GameObject.Find("Health Text").GetComponent<Text>();
+		scoreText = GameObject.Find("Score Text").GetComponent<Text>();
+		numKills = 0;
+		UpdateScoreText();
+		UpdateHealthText();
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+	void Update()
 	{
-	
+		if (Application.loadedLevelName == "levelOne")
+		{
+			if (numKills > 0)
+			{
+				Application.LoadLevel("shopScreen");
+			}
+		}
+	}
+
+	public static void UpdateHealthText()
+	{
+		healthText.text = "Health: " + PlayerController.health.ToString();
+	}
+
+	public static void UpdateScoreText()
+	{
+		scoreText.text = "Score: " + score.ToString();
 	}
 }

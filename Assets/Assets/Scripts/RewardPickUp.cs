@@ -9,9 +9,8 @@ public class RewardPickUp : MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
-			PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-			playerController.health += healthBoost;
-			playerController.updateHealthText();
+			PlayerController.health += healthBoost;
+			GameController.UpdateHealthText();
 			Destroy(gameObject);
 		}
 	}

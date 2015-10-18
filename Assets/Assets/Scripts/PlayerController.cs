@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
 {
 	public float walkingSpeed;
 	public float firingDelayTime;
-	public float health;
 	public Boundaries boundaries;
+	public float originalHealth;
 
 	private bool isFacingRight;
 
@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
 	private Transform shotSpawnPosition;
 	private float nextFireTime;
 
-	private Text healthText;
+	public static float health;
+	private static bool beenInitalized;
 
 	void Start() 
 	{
@@ -44,8 +45,11 @@ public class PlayerController : MonoBehaviour
 		shotSpawnPosition = transform.Find("ShotSpawnPosition");
 		nextFireTime = 0.0f;
 
-		healthText = GameObject.Find("Health Text").GetComponent<Text>();
-		updateHealthText();
+		if (!beenInitalized)
+		{
+			health = originalHealth;
+			beenInitalized = true;
+		}
 	}
 
 	void Update()
@@ -137,10 +141,5 @@ public class PlayerController : MonoBehaviour
 		{
 			playerAnimator.SetBool("isMoving", false);
 		}
-	}
-
-	public void updateHealthText()
-	{
-		healthText.text = "Health: " + health.ToString();
 	}
 }
