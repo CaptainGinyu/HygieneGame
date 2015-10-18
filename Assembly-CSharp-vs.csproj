@@ -55,6 +55,7 @@
      <Compile Include="Assets\Assets\Scripts\ItemManager.cs" />
      <Compile Include="Assets\Assets\Scripts\NPCController.cs" />
      <Compile Include="Assets\Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Assets\Scripts\RewardPickUp.cs" />
      <Compile Include="Assets\Assets\Scripts\ShopItem.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />

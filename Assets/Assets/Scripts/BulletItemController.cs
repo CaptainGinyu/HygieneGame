@@ -23,5 +23,9 @@ public class BulletItemController : Item
 			}
 			Destroy(gameObject);
 		}
+		else if (other.tag == "Other Collider")
+		{
+			Destroy(gameObject);
+		}
 	}
 }
