@@ -1,20 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour
 {
 	public int price;
-	public GameObject shopItemGameObject;
+	public Item shopItem;
+
+	private Text priceText;
+	private Text nameText;
+	private Image itemImage;
 
 	void Start()
 	{
-
+		priceText = transform.Find("Item Price").GetComponent<Text>();
+		nameText = transform.Find("Item Name").GetComponent<Text>();
+		itemImage = transform.Find("Item Image").GetComponent<Image>();
+		priceText.text = price.ToString();
+		nameText.text = shopItem.itemName;
+		itemImage.sprite = shopItem.spriteToShowInItemManager;
 	}
 
 	public void Purchase()
 	{
-		Debug.Log("purchased");
-		DontDestroyOnLoad(transform.gameObject);
-		Application.LoadLevel("levelOne");
+		if (GameController.score >= price)
+		{
+			Debug.Log("purchased");
+		}
+		else
+		{
+			Debug.Log("not enough money");
+		}
 	}
 }

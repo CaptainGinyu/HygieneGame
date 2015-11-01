@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-
 	public static float score;
 	public static int numKills;
 

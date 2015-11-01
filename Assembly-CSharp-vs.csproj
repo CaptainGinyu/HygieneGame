@@ -50,6 +50,7 @@
      <Compile Include="Assets\Assets\Scripts\BulletItemController.cs" />
      <Compile Include="Assets\Assets\Scripts\Camera2DFollow.cs" />
      <Compile Include="Assets\Assets\Scripts\EnemyController.cs" />
+     <Compile Include="Assets\Assets\Scripts\ExitShop.cs" />
      <Compile Include="Assets\Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Assets\Scripts\ItemManager.cs" />

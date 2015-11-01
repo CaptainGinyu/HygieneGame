@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RewardPickUp : MonoBehaviour
+public class RewardPickUp : Item
 {
 	public float healthBoost;
 
