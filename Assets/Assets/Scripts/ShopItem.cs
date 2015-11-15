@@ -26,6 +26,8 @@ public class ShopItem : MonoBehaviour
 		if (GameController.score >= price)
 		{
 			Debug.Log("purchased");
+			GameController.score -= price;
+			GameController.UpdateScoreText();
 		}
 		else
 		{

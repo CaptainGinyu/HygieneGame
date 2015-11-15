@@ -141,5 +141,5 @@ public class PlayerController : MonoBehaviour
 		{
 			playerAnimator.SetBool("isMoving", false);
 		}
-	}
+	}	
 }

@@ -4,17 +4,20 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-	public static float score;
+	public static float score = 0;
 	public static int numKills;
 
 	private static Text healthText;
 	private static Text scoreText;
+	public static ItemManager itemManager;
 	
 	void Start()
 	{
+		numKills = 0;
+
 		healthText = GameObject.Find("Health Text").GetComponent<Text>();
 		scoreText = GameObject.Find("Score Text").GetComponent<Text>();
-		numKills = 0;
+
 		UpdateScoreText();
 		UpdateHealthText();
 	}
