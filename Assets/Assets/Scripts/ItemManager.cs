@@ -3,13 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-[System.Serializable]
 public class ItemAndQuantity
 {
-	public GameObject item;
+	public Item item;
 	public int quantity;
 
-	public ItemAndQuantity(GameObject itemToAdd, int quantityToAdd)
+	public ItemAndQuantity(Item itemToAdd, int quantityToAdd)
 	{
 		item = itemToAdd;
 		quantity = quantityToAdd;
@@ -32,6 +31,11 @@ public class ItemManager : MonoBehaviour
 
 	void Start()
 	{
+		if (itemList == null)
+		{
+			itemList = new List<ItemAndQuantity>();
+		}
+
 		if (storedItemList == null)
 		{
 			storedItemList = itemList;
@@ -44,6 +48,7 @@ public class ItemManager : MonoBehaviour
 		itemImageDisplayer = transform.Find("Displayed Item").GetComponent<Image>();
 		itemQuantityDisplayer = transform.Find("Displayed Item Quantity").GetComponent<Text>();
 		emptyImage = itemImageDisplayer.sprite;
+
 		if (currentItemIndexInitialized)
 		{
 			DisplayCurrentItem();
@@ -64,9 +69,9 @@ public class ItemManager : MonoBehaviour
 		}
 		
 		changeWeaponPressed = false;
+
 	}
-	
-	// Update is called once per frame
+
 	void Update()
 	{
 		if (Input.GetAxisRaw("ChangeWeapon") > 0)
@@ -88,15 +93,31 @@ public class ItemManager : MonoBehaviour
 		}
 	}
 
-	public void addItem(GameObject item, int quantity)
+	public void AddItem(Item item, int quantity)
 	{
 		if (item.GetComponent<Item>() != null && quantity > 0)
 		{
+			foreach (ItemAndQuantity itemAndQuantity in itemList)
+			{
+				if (itemAndQuantity.item == item)
+				{
+					itemAndQuantity.quantity += quantity;
+					if (currentItemIndex < 0)
+					{
+						currentItemIndex = 0;
+					}
+					return;
+				}
+			}
 			itemList.Add(new ItemAndQuantity(item, quantity));
+			if (currentItemIndex < 0)
+			{
+				currentItemIndex = 0;
+			}
 		}
 	}
 
-	public void removeItem(ItemAndQuantity item)
+	public void RemoveItem(ItemAndQuantity item)
 	{
 		int listIndex = itemList.IndexOf(item);
 
@@ -119,7 +140,7 @@ public class ItemManager : MonoBehaviour
 		if (currentItemIndex >= 0)
 		{
 			ItemAndQuantity currItemAndQuantity = itemList[currentItemIndex];
-			itemImageDisplayer.sprite = currItemAndQuantity.item.GetComponent<Item>().spriteToShowInItemManager;
+			itemImageDisplayer.sprite = currItemAndQuantity.item.spriteToShowInItemManager;
 			itemQuantityDisplayer.text = currItemAndQuantity.quantity.ToString();
 		}
 		else

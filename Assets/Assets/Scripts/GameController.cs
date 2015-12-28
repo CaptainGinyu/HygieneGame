@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityStandardAssets._2D;
 
 public class GameController : MonoBehaviour
 {
@@ -9,17 +10,38 @@ public class GameController : MonoBehaviour
 
 	private static Text healthText;
 	private static Text scoreText;
-	public static ItemManager itemManager;
+
+	public static GameObject player;
+	public static PlayerController playerController;
 	
 	void Start()
 	{
+		if (player == null)
+		{
+			player = Resources.Load("Player") as GameObject;
+			playerController = player.GetComponent<PlayerController>();
+		}
+		Debug.Log("playerController: " + PlayerController.itemManager);
+		if (Application.loadedLevelName == "levelOne")
+		{
+			GameObject playerInstance =
+				Instantiate
+				(
+					player,
+					new Vector2(0, 0),
+					Quaternion.identity
+				) as GameObject;
+
+			GameObject.Find("Main Camera").GetComponent<Camera2DFollow>().target = playerInstance.transform;
+		}
+
 		numKills = 0;
 
 		healthText = GameObject.Find("Health Text").GetComponent<Text>();
 		scoreText = GameObject.Find("Score Text").GetComponent<Text>();
 
-		UpdateScoreText();
-		UpdateHealthText();
+		GameController.UpdateHealthText();
+		GameController.UpdateScoreText();
 	}
 
 	void Update()

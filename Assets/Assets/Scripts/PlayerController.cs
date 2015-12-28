@@ -25,10 +25,10 @@ public class PlayerController : MonoBehaviour
 	private Animator playerAnimator;
 	private Vector2 scale;
 
-	private ItemManager itemManager;
 	private Transform shotSpawnPosition;
 	private float nextFireTime;
-
+	//TODO: make this stuff not static?
+	public static ItemManager itemManager;
 	public static float health;
 	private static bool beenInitalized;
 
@@ -41,15 +41,24 @@ public class PlayerController : MonoBehaviour
 		playerAnimator = GetComponent<Animator>();
 		scale = transform.localScale;
 
-		itemManager = GameObject.Find("Item Display Area").GetComponent<ItemManager>();
 		shotSpawnPosition = transform.Find("ShotSpawnPosition");
 		nextFireTime = 0.0f;
 
 		if (!beenInitalized)
 		{
+			itemManager = GameObject.Find("Item Display Area").GetComponent<ItemManager>();
+			GameObject soap = Resources.Load("soap") as GameObject;
+			GameObject chlorine = Resources.Load("chlorineDrop") as GameObject;
+			itemManager.AddItem(soap.GetComponent<Item>(), 10);
+			itemManager.AddItem(chlorine.GetComponent<Item>(), 10);
+
+			itemManager.DisplayCurrentItem();
 			health = originalHealth;
 			beenInitalized = true;
 		}
+
+		GameController.UpdateHealthText();
+		GameController.UpdateScoreText();
 	}
 
 	void Update()
@@ -77,14 +86,14 @@ public class PlayerController : MonoBehaviour
 
 			if (currentItemIndex >= 0)
 			{
-				GameObject item =
+				Item item =
 					Instantiate
 					(
 						itemManager.itemList[currentItemIndex].item,
 						shotSpawnPosition.position,
 						shotSpawnPosition.rotation
 					)
-					as GameObject;
+					as Item;
 
 				if (!isFacingRight)
 				{
@@ -97,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
 				if (itemManager.itemList[currentItemIndex].quantity <= 0)
 				{
-					itemManager.removeItem(itemManager.itemList[currentItemIndex]);
+					itemManager.RemoveItem(itemManager.itemList[currentItemIndex]);
 				}
 
 				itemManager.DisplayCurrentItem();
@@ -141,5 +150,5 @@ public class PlayerController : MonoBehaviour
 		{
 			playerAnimator.SetBool("isMoving", false);
 		}
-	}	
+	}
 }

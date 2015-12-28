@@ -2,17 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Assets\Scripts\PlayerController.cs">
     <Files>
-      <File FileName="Assets\Assets\Scripts\ShopItem.cs" Line="18" Column="66" />
-      <File FileName="Assets\Assets\Scripts\PlayerController.cs" Line="49" Column="4" />
-      <File FileName="Assets\Assets\Scripts\AutoSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Assets\Scripts\EnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Assets\Scripts\NPCController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Assets\Scripts\BulletItemController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Assets\Scripts\GameController.cs" Line="12" Column="40" />
-      <File FileName="Assets\Assets\Scripts\ItemManager.cs" Line="15" Column="28" />
-      <File FileName="Assets\Assets\Scripts\RewardPickUp.cs" Line="1" Column="1" />
-      <File FileName="Assets\Assets\Scripts\Item.cs" Line="11" Column="3" />
-      <File FileName="Assets\Assets\Scripts\ExitShop.cs" Line="8" Column="37" />
+      <File FileName="Assets\Assets\Scripts\ShopItem.cs" Line="32" Column="54" />
+      <File FileName="Assets\Assets\Scripts\GameController.cs" Line="24" Column="64" />
+      <File FileName="Assets\Assets\Scripts\PlayerController.cs" Line="30" Column="37" />
+      <File FileName="Assets\Assets\Scripts\ItemManager.cs" Line="143" Column="19" />
+      <File FileName="Assets\Assets\Scripts\Item.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
