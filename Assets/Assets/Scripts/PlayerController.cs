@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityStandardAssets._2D;
 
 [System.Serializable]
 public class Boundaries
@@ -16,7 +17,6 @@ public class PlayerController : MonoBehaviour
 	public float walkingSpeed;
 	public float firingDelayTime;
 	public Boundaries boundaries;
-	public float originalHealth;
 
 	private bool isFacingRight;
 
@@ -27,14 +27,19 @@ public class PlayerController : MonoBehaviour
 
 	private Transform shotSpawnPosition;
 	private float nextFireTime;
-	//TODO: make this stuff not static?
-	public static ItemManager itemManager;
-	public static float health;
-	private static bool beenInitalized;
+
+	private Camera2DFollow camera2DFollow;
 
 	void Start() 
 	{
-		isFacingRight = true;
+		if (transform.localScale.x >= 0)
+		{
+			isFacingRight = true;
+		}
+		else
+		{
+			isFacingRight = false;
+		}
 		
 		playerRigidBody = GetComponent<Rigidbody2D>();
 
@@ -44,30 +49,13 @@ public class PlayerController : MonoBehaviour
 		shotSpawnPosition = transform.Find("ShotSpawnPosition");
 		nextFireTime = 0.0f;
 
-		if (!beenInitalized)
-		{
-			itemManager = GameObject.Find("Item Display Area").GetComponent<ItemManager>();
-			GameObject soap = Resources.Load("soap") as GameObject;
-			GameObject chlorine = Resources.Load("chlorineDrop") as GameObject;
-			itemManager.AddItem(soap.GetComponent<Item>(), 10);
-			itemManager.AddItem(chlorine.GetComponent<Item>(), 10);
-
-			itemManager.DisplayCurrentItem();
-			health = originalHealth;
-			beenInitalized = true;
-		}
-
-		GameController.UpdateHealthText();
-		GameController.UpdateScoreText();
+		camera2DFollow = GameObject.Find("Main Camera").AddComponent<Camera2DFollow>();
+		camera2DFollow.target = transform;
 	}
 
-	void Update()
+	void OnDestroy()
 	{
-		if (health <= 0)
-		{
-			Destroy(gameObject);
-			Destroy(GameObject.Find("Main Camera").GetComponent<UnityStandardAssets._2D.Camera2DFollow>());
-		}
+		Destroy(camera2DFollow);
 	}
 
 	void FixedUpdate()
@@ -82,14 +70,12 @@ public class PlayerController : MonoBehaviour
 
 		if (fireButtonValue > 0 && Time.time > nextFireTime)
 		{
-			int currentItemIndex = itemManager.getCurrentItemIndex();
-
-			if (currentItemIndex >= 0)
+			if (GameController.playerManager.itemManager.NumberOfItemTypes() > 0)
 			{
 				Item item =
 					Instantiate
 					(
-						itemManager.itemList[currentItemIndex].item,
+						GameController.playerManager.itemManager.DispenseCurrentItem(),
 						shotSpawnPosition.position,
 						shotSpawnPosition.rotation
 					)
@@ -101,15 +87,6 @@ public class PlayerController : MonoBehaviour
 					item.transform.localScale = new Vector2(-itemScale.x, itemScale.y);
 				}
 
-				itemManager.itemList[currentItemIndex].quantity--;
-
-
-				if (itemManager.itemList[currentItemIndex].quantity <= 0)
-				{
-					itemManager.RemoveItem(itemManager.itemList[currentItemIndex]);
-				}
-
-				itemManager.DisplayCurrentItem();
 				nextFireTime = Time.time + firingDelayTime;
 			}
 

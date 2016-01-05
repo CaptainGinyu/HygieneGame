@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityStandardAssets._2D;
 
 public class GameController : MonoBehaviour
 {
@@ -11,28 +10,20 @@ public class GameController : MonoBehaviour
 	private static Text healthText;
 	private static Text scoreText;
 
-	public static GameObject player;
-	public static PlayerController playerController;
+	public static PlayerManager playerManager;
 	
 	void Start()
 	{
-		if (player == null)
+		if (playerManager == null)
 		{
-			player = Resources.Load("Player") as GameObject;
-			playerController = player.GetComponent<PlayerController>();
-		}
-		Debug.Log("playerController: " + PlayerController.itemManager);
-		if (Application.loadedLevelName == "levelOne")
-		{
-			GameObject playerInstance =
+			GameObject playerManagerGameObject =
 				Instantiate
-				(
-					player,
-					new Vector2(0, 0),
-					Quaternion.identity
-				) as GameObject;
-
-			GameObject.Find("Main Camera").GetComponent<Camera2DFollow>().target = playerInstance.transform;
+					(
+						Resources.Load("PlayerManager") as GameObject,
+						Vector2.zero,
+						Quaternion.identity
+					) as GameObject;
+			playerManager = playerManagerGameObject.GetComponent<PlayerManager>();
 		}
 
 		numKills = 0;
@@ -40,8 +31,8 @@ public class GameController : MonoBehaviour
 		healthText = GameObject.Find("Health Text").GetComponent<Text>();
 		scoreText = GameObject.Find("Score Text").GetComponent<Text>();
 
-		GameController.UpdateHealthText();
-		GameController.UpdateScoreText();
+		UpdateHealthText();
+		UpdateScoreText();
 	}
 
 	void Update()
@@ -57,7 +48,7 @@ public class GameController : MonoBehaviour
 
 	public static void UpdateHealthText()
 	{
-		healthText.text = "Health: " + PlayerController.health.ToString();
+		healthText.text = "Health: " + playerManager.health.ToString();
 	}
 
 	public static void UpdateScoreText()

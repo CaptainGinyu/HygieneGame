@@ -20,7 +20,7 @@ public class EnemyController : NPCController
 	{
 		if (other.tag == "Player")
 		{
-			PlayerController.health -= damageThisGives;
+			GameController.playerManager.health -= damageThisGives;
 			GameController.UpdateHealthText();
 			timeUntilNextDamage = Time.time + delayBetweenDamages;
 		}
@@ -32,7 +32,7 @@ public class EnemyController : NPCController
 		{
 			if (Time.time > timeUntilNextDamage)
 			{
-				PlayerController.health -= damageThisGives;
+				GameController.playerManager.health -= damageThisGives;
 				GameController.UpdateHealthText();
 				timeUntilNextDamage = Time.time + delayBetweenDamages;
 			}

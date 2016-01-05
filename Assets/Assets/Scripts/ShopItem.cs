@@ -28,8 +28,7 @@ public class ShopItem : MonoBehaviour
 			Debug.Log("purchased");
 			GameController.score -= price;
 			GameController.UpdateScoreText();
-			PlayerController.itemManager.AddItem(shopItem, 1);
-			PlayerController.itemManager.DisplayCurrentItem();
+			GameController.playerManager.itemManager.AddItem(shopItem, 1);
 		}
 		else
 		{

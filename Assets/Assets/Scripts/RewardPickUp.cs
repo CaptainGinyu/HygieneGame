@@ -9,7 +9,7 @@ public class RewardPickUp : Item
 	{
 		if (other.tag == "Player")
 		{
-			PlayerController.health += healthBoost;
+			GameController.playerManager.health += healthBoost;
 			GameController.UpdateHealthText();
 			Destroy(gameObject);
 		}

@@ -17,61 +17,38 @@ public class ItemAndQuantity
 
 public class ItemManager : MonoBehaviour
 {
-	public List<ItemAndQuantity> itemList;
+	private static List<ItemAndQuantity> itemList;
 
 	private Image itemImageDisplayer;
 	private Text itemQuantityDisplayer;
 	private Sprite emptyImage;
 	private static int currentItemIndex;
-	private static bool currentItemIndexInitialized;
-
-	private static List<ItemAndQuantity> storedItemList;
 
 	private bool changeWeaponPressed;
 
-	void Start()
+	void OnLevelWasLoaded(int level)
 	{
-		if (itemList == null)
-		{
-			itemList = new List<ItemAndQuantity>();
-		}
-
-		if (storedItemList == null)
-		{
-			storedItemList = itemList;
-		}
-		else
-		{
-			itemList = storedItemList;
-		}
-
-		itemImageDisplayer = transform.Find("Displayed Item").GetComponent<Image>();
-		itemQuantityDisplayer = transform.Find("Displayed Item Quantity").GetComponent<Text>();
-		emptyImage = itemImageDisplayer.sprite;
-
-		if (currentItemIndexInitialized)
-		{
-			DisplayCurrentItem();
-		}
-		else
-		{
-			if (itemList.Count > 0)
-			{
-				currentItemIndex = 0;
-				DisplayCurrentItem();
-			}
-			else
-			{
-				currentItemIndex = -1;
-			}
-
-			currentItemIndexInitialized = true;
-		}
-		
-		changeWeaponPressed = false;
-
+		itemImageDisplayer = GameObject.Find("Displayed Item").GetComponent<Image>();
+		itemQuantityDisplayer = GameObject.Find("Displayed Item Quantity").GetComponent<Text>();
+		DisplayCurrentItem();
 	}
 
+	void Awake()
+	{
+		itemList = new List<ItemAndQuantity>();
+		
+		itemImageDisplayer = GameObject.Find("Displayed Item").GetComponent<Image>();
+		itemQuantityDisplayer = GameObject.Find("Displayed Item Quantity").GetComponent<Text>();
+		emptyImage = itemImageDisplayer.sprite;
+		
+		currentItemIndex = -1;
+	}
+
+	void Start()
+	{
+		changeWeaponPressed = false;
+	}
+	
 	void Update()
 	{
 		if (Input.GetAxisRaw("ChangeWeapon") > 0)
@@ -95,7 +72,7 @@ public class ItemManager : MonoBehaviour
 
 	public void AddItem(Item item, int quantity)
 	{
-		if (item.GetComponent<Item>() != null && quantity > 0)
+		if (quantity > 0)
 		{
 			foreach (ItemAndQuantity itemAndQuantity in itemList)
 			{
@@ -106,6 +83,8 @@ public class ItemManager : MonoBehaviour
 					{
 						currentItemIndex = 0;
 					}
+
+					DisplayCurrentItem();
 					return;
 				}
 			}
@@ -114,6 +93,8 @@ public class ItemManager : MonoBehaviour
 			{
 				currentItemIndex = 0;
 			}
+
+			DisplayCurrentItem();
 		}
 	}
 
@@ -128,11 +109,38 @@ public class ItemManager : MonoBehaviour
 		{
 			currentItemIndex = itemList.Count - 1;
 		}
+
+		DisplayCurrentItem();
 	}
 
-	public int getCurrentItemIndex()
+	public Item DispenseCurrentItem()
 	{
-		return currentItemIndex;
+		Item itemToDispense = null;
+
+		if (currentItemIndex >= 0)
+		{
+			itemToDispense = itemList[currentItemIndex].item;
+			itemList[currentItemIndex].quantity--;
+
+			if (itemList[currentItemIndex].quantity <= 0)
+			{
+				itemList.RemoveAt(currentItemIndex);
+				currentItemIndex--;
+				if (itemList.Count > 0 && currentItemIndex < 0)
+				{
+					currentItemIndex = itemList.Count - 1;
+				}
+			}
+
+			DisplayCurrentItem();
+		}
+
+		return itemToDispense;
+	}
+
+	public int NumberOfItemTypes()
+	{
+		return itemList.Count;
 	}
 
 	public void DisplayCurrentItem()
