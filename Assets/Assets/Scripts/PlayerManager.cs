@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
 	public float health;
 
 	private GameObject playerInstance;
+	private SpriteRenderer playerInstanceSpriteRenderer;
 
 	void OnLevelWasLoaded(int level)
 	{
@@ -20,6 +21,7 @@ public class PlayerManager : MonoBehaviour
 						Vector2.zero,
 						Quaternion.identity
 					) as GameObject;
+			playerInstanceSpriteRenderer = playerInstance.GetComponent<SpriteRenderer>();
 		}
 		else
 		{
@@ -53,6 +55,7 @@ public class PlayerManager : MonoBehaviour
 						Vector2.zero,
 						Quaternion.identity
 					) as GameObject;
+			playerInstanceSpriteRenderer = playerInstance.GetComponent<SpriteRenderer>();
 		}
 
 		GameController.UpdateScoreText();
@@ -64,6 +67,20 @@ public class PlayerManager : MonoBehaviour
 		if (health <= 0)
 		{
 			Destroy(playerInstance);
+			Destroy(gameObject);
+		}
+	}
+
+	public IEnumerator PlayerColorFlash(Color color)
+	{
+		playerInstanceSpriteRenderer.color = color;
+		yield return new WaitForSeconds(1f);
+		try
+		{
+			playerInstanceSpriteRenderer.color = Color.white;
+		}
+		catch(System.Exception)
+		{
 
 		}
 	}

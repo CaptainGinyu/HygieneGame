@@ -20,9 +20,7 @@ public class EnemyController : NPCController
 	{
 		if (other.tag == "Player")
 		{
-			GameController.playerManager.health -= damageThisGives;
-			GameController.UpdateHealthText();
-			timeUntilNextDamage = Time.time + delayBetweenDamages;
+			HurtThePlayer();
 		}
 	}
 
@@ -32,10 +30,16 @@ public class EnemyController : NPCController
 		{
 			if (Time.time > timeUntilNextDamage)
 			{
-				GameController.playerManager.health -= damageThisGives;
-				GameController.UpdateHealthText();
-				timeUntilNextDamage = Time.time + delayBetweenDamages;
+				HurtThePlayer();
 			}
 		}
+	}
+
+	void HurtThePlayer()
+	{
+		GameController.playerManager.health -= damageThisGives;
+		GameController.UpdateHealthText();
+		timeUntilNextDamage = Time.time + delayBetweenDamages;
+		StartCoroutine(GameController.playerManager.PlayerColorFlash(Color.red));
 	}
 }
