@@ -138,6 +138,16 @@ public class ItemManager : MonoBehaviour
 		return itemToDispense;
 	}
 
+	public Item getCurrentItem()
+	{
+		if (currentItemIndex >= 0)
+		{
+			return itemList[currentItemIndex].item;
+		}
+
+		return null;
+	}
+
 	public int NumberOfItemTypes()
 	{
 		return itemList.Count;

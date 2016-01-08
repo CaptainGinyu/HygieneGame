@@ -6,7 +6,12 @@ public class Item : MonoBehaviour
 	public string itemName;
 	public Sprite spriteToShowInItemManager;
 
-	public virtual void performItemEffect()
+	protected virtual void Start()
+	{
+
+	}
+
+	public virtual void PerformItemEffect()
 	{
 
 	}

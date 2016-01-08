@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
 	private Transform shotSpawnPosition;
 	private float nextFireTime;
-
+	
 	private Camera2DFollow camera2DFollow;
 
 	void Start() 
@@ -72,25 +72,28 @@ public class PlayerController : MonoBehaviour
 		{
 			if (GameController.playerManager.itemManager.NumberOfItemTypes() > 0)
 			{
-				Item item =
-					Instantiate
-					(
-						GameController.playerManager.itemManager.DispenseCurrentItem(),
-						shotSpawnPosition.position,
-						shotSpawnPosition.rotation
-					)
-					as Item;
+				Item currItemInItemManager = GameController.playerManager.itemManager.getCurrentItem();
 
-				if (!isFacingRight)
+				if (currItemInItemManager is BulletItemController)
 				{
-					Vector2 itemScale = item.transform.localScale;
-					item.transform.localScale = new Vector2(-itemScale.x, itemScale.y);
+					Item itemSpawned =
+						Instantiate
+							(
+								GameController.playerManager.itemManager.DispenseCurrentItem(),
+								shotSpawnPosition.position,
+								shotSpawnPosition.rotation
+							)
+							as Item;
+					
+					if (!isFacingRight)
+					{
+						Vector2 itemScale = itemSpawned.transform.localScale;
+						itemSpawned.transform.localScale = new Vector2(-itemScale.x, itemScale.y);
+					}
 				}
-
+				
 				nextFireTime = Time.time + firingDelayTime;
 			}
-
-
 		}
 	}
 

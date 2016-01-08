@@ -39,18 +39,21 @@ public class NPCController : MonoBehaviour
 
 	void PerformNPCMovement()
 	{
-		npcRigidBody.velocity = new Vector2(horizontalDirection * movementSpeedX, verticalDirection * movementSpeedY);
+		if ((movementSpeedX != 0) || (movementSpeedY != 0))
+		{
+			npcRigidBody.velocity = new Vector2(horizontalDirection * movementSpeedX, verticalDirection * movementSpeedY);
 
-		if ((horizontalDirection == -1 && npcRigidBody.position.x <= boundaries.xMin + scale.x / 4)
-		    || (horizontalDirection == 1 && npcRigidBody.position.x >= boundaries.xMax - scale.x / 4))
-		{
-			horizontalDirection *= -1;
-			transform.localScale = new Vector2(-transform.localScale.x, scale.y);
-		}
-		if ((verticalDirection == -1 && npcRigidBody.position.y <= boundaries.yMin + scale.y / 4)
-		    || (verticalDirection == 1 && npcRigidBody.position.y >= boundaries.yMax - scale.y / 4))
-		{
-			verticalDirection *= -1;
+			if ((horizontalDirection == -1 && npcRigidBody.position.x <= boundaries.xMin + scale.x / 4)
+			    || (horizontalDirection == 1 && npcRigidBody.position.x >= boundaries.xMax - scale.x / 4))
+			{
+				horizontalDirection *= -1;
+				transform.localScale = new Vector2(-transform.localScale.x, scale.y);
+			}
+			if ((verticalDirection == -1 && npcRigidBody.position.y <= boundaries.yMin + scale.y / 4)
+			    || (verticalDirection == 1 && npcRigidBody.position.y >= boundaries.yMax - scale.y / 4))
+			{
+				verticalDirection *= -1;
+			}
 		}
 	}
 }

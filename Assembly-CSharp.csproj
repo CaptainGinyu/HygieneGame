@@ -58,6 +58,7 @@
      <Compile Include="Assets\Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Assets\Scripts\RewardPickUp.cs" />
      <Compile Include="Assets\Assets\Scripts\ShopItem.cs" />
+     <Compile Include="Assets\Assets\Scripts\SourceModifier.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
  <Reference Include="UnityEngine.Advertisements">

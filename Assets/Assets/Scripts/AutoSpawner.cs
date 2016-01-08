@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AutoSpawner : MonoBehaviour
 {
+	public string nameOfThis;
 	public GameObject whatThisSpawns;
 	public float delayBetweenSpawns;
 

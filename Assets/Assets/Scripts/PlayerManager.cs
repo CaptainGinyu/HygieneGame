@@ -39,7 +39,9 @@ public class PlayerManager : MonoBehaviour
 		itemManager = gameObject.AddComponent<ItemManager>();
 		GameObject soap = Resources.Load("soap") as GameObject;
 		GameObject chlorine = Resources.Load("chlorineDrop") as GameObject;
+		GameObject waterJugCap = Resources.Load("waterJugCap") as GameObject;
 		itemManager.AddItem(soap.GetComponent<Item>(), 10);
+		itemManager.AddItem(waterJugCap.GetComponent<Item>(), 10);
 		itemManager.AddItem(chlorine.GetComponent<Item>(), 10);
 
 		itemManager.DisplayCurrentItem();
