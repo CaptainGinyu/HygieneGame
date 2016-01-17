@@ -21,9 +21,9 @@ public class BulletItemController : Item
 			if (enemy.nameOfThis == whatThisAffects)
 			{
 				Destroy(other.gameObject);
-				GameController.score += enemy.pointsGivenIfKilled;
-				GameController.UpdateScoreText();
-				GameController.numKills++;
+				GameControllerForLevel.score += enemy.pointsGivenIfKilled;
+				GameControllerForLevel.recordedPoints += enemy.pointsGivenIfKilled;
+				GameControllerForLevel.UpdateScoreText();
 			}
 			Destroy(gameObject);
 		}
