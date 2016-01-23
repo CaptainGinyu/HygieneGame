@@ -46,18 +46,20 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Assets\Scripts\AutoSpawner.cs" />
+     <Compile Include="Assets\Assets\Scripts\BoundedMover.cs" />
      <Compile Include="Assets\Assets\Scripts\BulletItemController.cs" />
      <Compile Include="Assets\Assets\Scripts\Camera2DFollow.cs" />
-     <Compile Include="Assets\Assets\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Assets\Scripts\ExitShop.cs" />
      <Compile Include="Assets\Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Assets\Scripts\GameControllerForLevel.cs" />
+     <Compile Include="Assets\Assets\Scripts\HealthAffector.cs" />
      <Compile Include="Assets\Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Assets\Scripts\ItemManager.cs" />
-     <Compile Include="Assets\Assets\Scripts\NPCController.cs" />
+     <Compile Include="Assets\Assets\Scripts\Killable.cs" />
+     <Compile Include="Assets\Assets\Scripts\Mover.cs" />
+     <Compile Include="Assets\Assets\Scripts\OneTimeHealthAffector.cs" />
      <Compile Include="Assets\Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Assets\Scripts\PlayerManager.cs" />
-     <Compile Include="Assets\Assets\Scripts\RewardPickUp.cs" />
      <Compile Include="Assets\Assets\Scripts\ShopItem.cs" />
      <Compile Include="Assets\Assets\Scripts\SourceModifier.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

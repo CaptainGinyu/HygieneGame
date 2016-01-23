@@ -17,7 +17,7 @@ public class BulletItemController : Item
 	{
 		if (other.tag == "Enemy")
 		{
-			EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
+			Killable enemy = other.gameObject.GetComponent<Killable>();
 			if (enemy.nameOfThis == whatThisAffects)
 			{
 				Destroy(other.gameObject);

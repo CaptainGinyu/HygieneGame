@@ -17,19 +17,19 @@ public class PlayerController : MonoBehaviour
 	public float walkingSpeed;
 	public float firingDelayTime;
 	public Boundaries boundaries;
-
+	
 	private bool isFacingRight;
-
+	
 	private Rigidbody2D playerRigidBody;
-
+	
 	private Animator playerAnimator;
 	private Vector2 scale;
-
+	
 	private Transform shotSpawnPosition;
 	private float nextFireTime;
 	
 	private Camera2DFollow camera2DFollow;
-
+	
 	void Start() 
 	{
 		if (transform.localScale.x >= 0)
@@ -40,40 +40,40 @@ public class PlayerController : MonoBehaviour
 		{
 			isFacingRight = false;
 		}
-		
+
 		playerRigidBody = GetComponent<Rigidbody2D>();
-
+		
 		playerAnimator = GetComponent<Animator>();
-		scale = transform.localScale;
-
+		scale = new Vector2(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y));
+		
 		shotSpawnPosition = transform.Find("ShotSpawnPosition");
 		nextFireTime = 0.0f;
-
+		
 		camera2DFollow = GameObject.Find("Main Camera").AddComponent<Camera2DFollow>();
 		camera2DFollow.target = transform;
 	}
-
+	
 	void OnDestroy()
 	{
 		Destroy(camera2DFollow);
 	}
-
+	
 	void FixedUpdate()
 	{
 		HandleWalking();
 		HandleFiring();
 	}
-
+	
 	void HandleFiring()
 	{
 		float fireButtonValue = Input.GetAxisRaw("Fire1");
-
+		
 		if (fireButtonValue > 0 && Time.time > nextFireTime)
 		{
 			if (GameController.playerManager.itemManager.NumberOfItemTypes() > 0)
 			{
 				Item currItemInItemManager = GameController.playerManager.itemManager.getCurrentItem();
-
+				
 				if (currItemInItemManager is BulletItemController)
 				{
 					Item itemSpawned =
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 								GameController.playerManager.itemManager.DispenseCurrentItem(),
 								shotSpawnPosition.position,
 								shotSpawnPosition.rotation
-							)
+								)
 							as Item;
 					
 					if (!isFacingRight)
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 	}
-
+	
 	void HandleWalking()
 	{
 		float moveHoriz = Input.GetAxisRaw("Horizontal");
@@ -106,11 +106,11 @@ public class PlayerController : MonoBehaviour
 		playerRigidBody.velocity = movement * walkingSpeed;
 		
 		playerRigidBody.position = new Vector2
-		(
-			Mathf.Clamp(playerRigidBody.position.x, boundaries.xMin + scale.x / 4, boundaries.xMax - scale.x / 4),
-			Mathf.Clamp(playerRigidBody.position.y, boundaries.yMin + scale.y / 4, boundaries.yMax - scale.y / 4)
-		);
-		
+			(
+				Mathf.Clamp(playerRigidBody.position.x, boundaries.xMin + scale.x / 4, boundaries.xMax - scale.x / 4),
+				Mathf.Clamp(playerRigidBody.position.y, boundaries.yMin + scale.y / 4, boundaries.yMax - scale.y / 4)
+			);
+
 		if (moveHoriz > 0)
 		{
 			isFacingRight = true;
