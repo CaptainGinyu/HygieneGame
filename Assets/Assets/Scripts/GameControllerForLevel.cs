@@ -4,7 +4,14 @@ using System.Collections;
 public class GameControllerForLevel : GameController
 {
 	public int pointsToEndLevel;
+	public bool shopInBetween;
 	public string nameOfNextScene;
+
+	public bool dirtyHandAvailable;
+	public bool foodAvailable;
+	public bool smokeAvailable;
+	public bool poopAndFliesAvailable;
+	public bool mosquitosAvailable;
 
 	public static float recordedPoints;
 
@@ -18,7 +25,15 @@ public class GameControllerForLevel : GameController
 	{
 		if (recordedPoints >= pointsToEndLevel)
 		{
-			Application.LoadLevel(nameOfNextScene);
+			if (shopInBetween)
+			{
+				ExitShop.nameOfNextLevel = nameOfNextScene;
+				Application.LoadLevel("shopScreen");
+			}
+			else
+			{
+				Application.LoadLevel(nameOfNextScene);
+			}
 		}
 	}
 }
