@@ -19,42 +19,45 @@ public class SourceModifier : BulletItemController
 		AutoSpawner autoSpawner = other.gameObject.GetComponent<AutoSpawner>();
 		if (autoSpawner != null)
 		{
-			if (autoSpawner.nameOfThis == whatThisAffects)
+			foreach (string potentialVictim in whatThisAffects)
 			{
-				CancelInvoke("DestroyInvocation");
-				transform.parent = autoSpawner.transform;
-				GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-				transform.localPosition = new Vector2(localX, localY);
-				if (destroySource)
+				if (autoSpawner.nameOfThis.Equals(potentialVictim))
 				{
-					Destroy(autoSpawner.gameObject);
+					CancelInvoke("DestroyInvocation");
+					transform.parent = autoSpawner.transform;
+					gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+					GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+					transform.localPosition = new Vector2(localX, localY);
+					if (destroySource)
+					{
+						Destroy(autoSpawner.gameObject);
+						Destroy(this);
+						return;
+					}
+					if (turnSourceEnemyGood)
+					{
+						HealthAffector healthAffector = other.gameObject.GetComponent<HealthAffector>();
+						if (healthAffector != null)
+						{
+							healthAffector.healthGive = Mathf.Abs(healthAffector.healthGive);
+						}
+						HealthAffector spawnedHealthAffector = autoSpawner.whatThisSpawns.GetComponent<HealthAffector>();
+						if (spawnedHealthAffector != null)
+						{
+							spawnedHealthAffector.healthGive = Mathf.Abs(spawnedHealthAffector.healthGive);
+						}
+						
+					}
+					else
+					{
+						Destroy(autoSpawner);
+					}
 					Destroy(this);
 					return;
 				}
-				if (turnSourceEnemyGood)
-				{
-					HealthAffector healthAffector = other.gameObject.GetComponent<HealthAffector>();
-					if (healthAffector != null)
-					{
-						healthAffector.healthGive = Mathf.Abs(healthAffector.healthGive);
-					}
-					HealthAffector spawnedHealthAffector = autoSpawner.whatThisSpawns.GetComponent<HealthAffector>();
-					if (spawnedHealthAffector != null)
-					{
-						spawnedHealthAffector.healthGive = Mathf.Abs(spawnedHealthAffector.healthGive);
-					}
+			}
 
-				}
-				else
-				{
-					Destroy(autoSpawner);
-				}
-				Destroy(this);
-			}
-			else
-			{
-				Destroy(gameObject);
-			}
+			Destroy(gameObject);
 		}
 		else if ((other.tag == "Enemy") || (other.tag == "Other Collider"))
 		{

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BulletItemController : Item
 {
-	public string whatThisAffects;
+	public List<string> whatThisAffects;
 	public float howManySecondsThisItemLasts;
 	public float speed;
 	
@@ -15,16 +16,21 @@ public class BulletItemController : Item
 
 	protected virtual void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Enemy")
+		Killable killable = other.gameObject.GetComponent<Killable>();
+		if (killable != null)
 		{
-			Killable enemy = other.gameObject.GetComponent<Killable>();
-			if (enemy.nameOfThis == whatThisAffects)
+			foreach (string potentialVictim in whatThisAffects)
 			{
-				Destroy(other.gameObject);
-				GameControllerForLevel.score += enemy.pointsGivenIfKilled;
-				GameControllerForLevel.recordedPoints += enemy.pointsGivenIfKilled;
-				GameControllerForLevel.UpdateScoreText();
+				if (killable.nameOfThis.Equals(potentialVictim))
+				{
+					Destroy(other.gameObject);
+					GameControllerForLevel.score += killable.pointsGivenIfKilled;
+					GameControllerForLevel.recordedPoints += killable.pointsGivenIfKilled;
+					GameControllerForLevel.UpdateScoreText();
+					break;
+				}
 			}
+
 			Destroy(gameObject);
 		}
 		else if (other.tag == "Other Collider")
