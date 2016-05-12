@@ -25,7 +25,6 @@ public class SourceModifier : BulletItemController
 				{
 					CancelInvoke("DestroyInvocation");
 					transform.parent = autoSpawner.transform;
-					gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
 					GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 					transform.localPosition = new Vector2(localX, localY);
 					if (destroySource)
