@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 	public ItemManager itemManager;
 	public float health;
 
+	private bool isWearingSandals;
 	private GameObject playerInstance;
 	private SpriteRenderer playerInstanceSpriteRenderer;
 
@@ -45,6 +46,8 @@ public class PlayerManager : MonoBehaviour
 		itemManager.AddItem(chlorine.GetComponent<Item>(), 10);
 
 		itemManager.DisplayCurrentItem();
+
+		isWearingSandals = false;
 
 		health = originalHealth;
 

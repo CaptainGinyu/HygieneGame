@@ -5,8 +5,9 @@ public class AutoSpawner : MonoBehaviour
 {
 	public string nameOfThis;
 	public GameObject whatThisSpawns;
-	public float delayBetweenSpawns;
-
+	public float delayLowerBound;
+	public float delayUpperBound;
+	
 	private Transform spawnPosition;
 	private float nextSpawnTime;
 	
@@ -15,13 +16,20 @@ public class AutoSpawner : MonoBehaviour
 		spawnPosition = transform.Find("SpawnPosition");
 		nextSpawnTime = 0.0f;
 	}
-
+	
 	void Update()
 	{
 		if (Time.time > nextSpawnTime)
 		{
 			Instantiate(whatThisSpawns, spawnPosition.position, spawnPosition.rotation);
-			nextSpawnTime = Time.time + delayBetweenSpawns;
+			if (delayLowerBound < delayUpperBound)
+			{
+				nextSpawnTime = Time.time + Random.Range(delayLowerBound, delayUpperBound);
+			}
+			else
+			{
+				nextSpawnTime = Time.time + delayLowerBound;
+			}
 		}
 	}
 }
