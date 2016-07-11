@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 								GameController.playerManager.itemManager.DispenseCurrentItem(),
 								shotSpawnPosition.position,
 								shotSpawnPosition.rotation
-								)
+							)
 							as Item;
 					
 					if (!isFacingRight)
