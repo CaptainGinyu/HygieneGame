@@ -23,12 +23,23 @@ public class ShopItem : MonoBehaviour
 
 	public void Purchase()
 	{
-		if (GameController.score >= price)
+		if (shopItem.itemName == "sandals" && GameController.playerManager.getIsWearingSandals ())
+		{
+			Debug.Log("You already have sandals!");
+		}
+		else if (GameController.score >= price)
 		{
 			Debug.Log("purchased");
 			GameController.score -= price;
 			GameController.UpdateScoreText();
-			GameController.playerManager.itemManager.AddItem(shopItem, 1);
+			if (shopItem.itemName == "sandals")
+			{
+				GameController.playerManager.toggleWearingSandals(true);
+			}
+			else
+			{
+				GameController.playerManager.itemManager.AddItem(shopItem, 1);
+			}
 		}
 		else
 		{

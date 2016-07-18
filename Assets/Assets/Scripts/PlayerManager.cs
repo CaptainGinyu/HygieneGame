@@ -15,13 +15,26 @@ public class PlayerManager : MonoBehaviour
 	{
 		if (Application.loadedLevelName == "levelOne")
 		{
-			playerInstance =
-				Instantiate
-					(
-						Resources.Load("Player") as GameObject,
-						Vector2.zero,
-						Quaternion.identity
-					) as GameObject;
+			if (!isWearingSandals)
+			{
+				playerInstance =
+					Instantiate
+						(
+							Resources.Load("Player") as GameObject,
+							Vector2.zero,
+							Quaternion.identity
+						) as GameObject;
+			}
+			else
+			{
+				playerInstance =
+					Instantiate
+						(
+							Resources.Load("PlayerWithSandals") as GameObject,
+							Vector2.zero,
+							Quaternion.identity
+						) as GameObject;
+			}
 			playerInstanceSpriteRenderer = playerInstance.GetComponent<SpriteRenderer>();
 		}
 		else
@@ -88,5 +101,15 @@ public class PlayerManager : MonoBehaviour
 		{
 
 		}
+	}
+
+	public bool getIsWearingSandals()
+	{
+		return isWearingSandals;
+	}
+
+	public void toggleWearingSandals(bool sandalsOnOrOff)
+	{
+		isWearingSandals = sandalsOnOrOff;
 	}
 }

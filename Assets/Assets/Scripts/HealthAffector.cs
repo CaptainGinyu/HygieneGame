@@ -34,7 +34,7 @@ public class HealthAffector : MonoBehaviour
 		}
 	}
 
-	void AffectPlayerHealth()
+	protected virtual void AffectPlayerHealth()
 	{
 		GameController.playerManager.health += healthGive;
 		if (healthGive < 0)
