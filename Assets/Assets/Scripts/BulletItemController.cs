@@ -17,20 +17,21 @@ public class BulletItemController : Item
 	protected virtual void OnTriggerEnter2D(Collider2D other)
 	{
 		Killable killable = other.gameObject.GetComponent<Killable>();
-		if (killable != null)
-		{
-			foreach (string potentialVictim in whatThisAffects)
-			{
-				if (killable.nameOfThis.Equals(potentialVictim))
-				{
-					Destroy(other.gameObject);
+		if (killable != null) {
+			foreach (string potentialVictim in whatThisAffects) {
+				if (killable.nameOfThis.Equals (potentialVictim)) {
+					Destroy (other.gameObject);
 					GameControllerForLevel.score += killable.pointsGivenIfKilled;
 					GameControllerForLevel.recordedPoints += killable.pointsGivenIfKilled;
-					GameControllerForLevel.UpdateScoreText();
+					GameControllerForLevel.UpdateScoreText ();
 					break;
 				}
 			}
 
+			Destroy(gameObject);
+		}
+		else if (other.tag == "Enemy")
+		{
 			Destroy(gameObject);
 		}
 		else if (other.tag == "Other Collider")
