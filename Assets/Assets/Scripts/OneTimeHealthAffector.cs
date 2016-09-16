@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class OneTimeHealthAffector : HealthAffector
 {
 	public float howManySecondsThisLasts;
+	public List<string> autoSpawnerThisCanGoThrough;
 
 	override protected void Start()
 	{
@@ -14,6 +16,14 @@ public class OneTimeHealthAffector : HealthAffector
 	override protected void OnTriggerEnter2D(Collider2D other)
 	{
 		base.OnTriggerEnter2D(other);
+
+		AutoSpawner possibleAutoSpawner = other.gameObject.GetComponent<AutoSpawner>();
+
+		if (possibleAutoSpawner != null && autoSpawnerThisCanGoThrough.Contains(possibleAutoSpawner.nameOfThis))
+		{
+			return;
+		}
+
 		Destroy(gameObject);
 	}
 

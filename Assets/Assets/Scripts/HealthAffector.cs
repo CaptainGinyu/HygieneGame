@@ -36,12 +36,6 @@ public class HealthAffector : MonoBehaviour
 
 	protected virtual void AffectPlayerHealth()
 	{
-		GameController.playerManager.health += healthGive;
-		if (healthGive < 0)
-		{
-			StartCoroutine(GameController.playerManager.PlayerColorFlash(Color.red));
-		}
-
-		GameController.UpdateHealthText();
+		GameController.playerManager.AffectPlayerHealth(healthGive);
 	}
 }

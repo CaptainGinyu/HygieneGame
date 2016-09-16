@@ -103,6 +103,17 @@ public class PlayerManager : MonoBehaviour
 		}
 	}
 
+	public void AffectPlayerHealth(float healthAmount)
+	{
+		health += healthAmount;
+		if (healthAmount < 0)
+		{
+			StartCoroutine(PlayerColorFlash(Color.red));
+		}
+
+		GameController.UpdateHealthText();
+	}
+
 	public bool getIsWearingSandals()
 	{
 		return isWearingSandals;

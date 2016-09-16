@@ -8,16 +8,16 @@ public class AutoSpawner : MonoBehaviour
 	public float delayLowerBound;
 	public float delayUpperBound;
 	
-	private Transform spawnPosition;
+	protected Transform spawnPosition;
 	private float nextSpawnTime;
 	
-	void Start()
+	protected virtual void Start()
 	{
 		spawnPosition = transform.Find("SpawnPosition");
 		nextSpawnTime = 0.0f;
 	}
 	
-	void Update()
+	protected virtual void Update()
 	{
 		if (Time.time > nextSpawnTime)
 		{
