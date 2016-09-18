@@ -66,6 +66,7 @@
      <Compile Include="Assets\Assets\Scripts\PoopHealthAffector.cs" />
      <Compile Include="Assets\Assets\Scripts\ShopItem.cs" />
      <Compile Include="Assets\Assets\Scripts\SourceModifier.cs" />
+     <Compile Include="Assets\Assets\Scripts\WaterCleaner.cs" />
      <Compile Include="Assets\Assets\Scripts\WaterSource.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
