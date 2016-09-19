@@ -32,6 +32,28 @@ public class SourceModifier : BulletItemController
 			}
 
 			Destroy(gameObject);
+			return;
+		}
+
+		OnOffSource onOffSource = other.gameObject.GetComponent<OnOffSource>();
+		if (onOffSource != null)
+		{
+			foreach (string potentialVictim in whatThisAffects)
+			{
+				if (onOffSource.nameOfThis.Equals(potentialVictim))
+				{
+					CancelInvoke("DestroyInvocation");
+					transform.parent = onOffSource.transform;
+					GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+					transform.localPosition = new Vector2(localX, localY);
+					Destroy(onOffSource.attachment);
+					Destroy(onOffSource);
+					Destroy(this);
+					return;
+				}
+			}
+
+			Destroy(gameObject);
 		}
 		else if ((other.tag == "Enemy") || (other.tag == "Other Collider"))
 		{
