@@ -2,12 +2,26 @@
 using System.Collections;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class Boundaries
+{
+	public float xMin;
+	public float xMax;
+	public float yMin;
+	public float yMax;
+}
+
 public class GameController : MonoBehaviour
 {
 	public static float score = 0;
 
 	private static Text healthText;
 	private static Text scoreText;
+
+	public static bool waterJugCapPurchased;
+	public static bool waterFilterPurchased;
+	public static bool mosquitoNetPurchased;
+	public static bool stovePurchased;
 
 	public static PlayerManager playerManager;
 	

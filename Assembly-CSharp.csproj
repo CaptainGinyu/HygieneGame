@@ -50,8 +50,10 @@
      <Compile Include="Assets\Assets\Scripts\BulletItemController.cs" />
      <Compile Include="Assets\Assets\Scripts\Camera2DFollow.cs" />
      <Compile Include="Assets\Assets\Scripts\DirectionFacingMover.cs" />
+     <Compile Include="Assets\Assets\Scripts\DirtyMaker.cs" />
      <Compile Include="Assets\Assets\Scripts\EnemyThatKillsFood.cs" />
      <Compile Include="Assets\Assets\Scripts\ExitShop.cs" />
+     <Compile Include="Assets\Assets\Scripts\FoodHealthAffector.cs" />
      <Compile Include="Assets\Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Assets\Scripts\GameControllerForLevel.cs" />
      <Compile Include="Assets\Assets\Scripts\HealthAffector.cs" />
@@ -70,17 +72,11 @@
      <Compile Include="Assets\Assets\Scripts\WaterSource.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

@@ -3,15 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityStandardAssets._2D;
 
-[System.Serializable]
-public class Boundaries
-{
-	public float xMin;
-	public float xMax;
-	public float yMin;
-	public float yMax;
-}
-
 public class PlayerController : MonoBehaviour
 {
 	public float walkingSpeed;
