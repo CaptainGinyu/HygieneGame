@@ -1,17 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Assets\Scripts\FoodHealthAffector.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Assets\Scripts\ExitShop.cs">
     <Files>
-      <File FileName="Assets\Assets\Scripts\GameControllerForLevel.cs" Line="1" Column="1" />
-      <File FileName="Assets\Assets\Scripts\GameController.cs" Line="12" Column="2" />
-      <File FileName="Assets\Assets\Scripts\BoundedMover.cs" Line="1" Column="1" />
-      <File FileName="Assets\Assets\Scripts\AutoSpawner.cs" Line="22" Column="38" />
-      <File FileName="Assets\Assets\Scripts\PlayerManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Assets\Scripts\OneTimeHealthAffector.cs" Line="27" Column="23" />
-      <File FileName="Assets\Assets\Scripts\HealthAffector.cs" Line="37" Column="45" />
-      <File FileName="Assets\Assets\Scripts\FoodHealthAffector.cs" Line="45" Column="23" />
-      <File FileName="Assets\Assets\Scripts\DirtyMaker.cs" Line="6" Column="27" />
-      <File FileName="Assets\Assets\Scripts\WaterSource.cs" Line="20" Column="3" />
+      <File FileName="Assets\Assets\Scripts\GameControllerForLevel.cs" Line="20" Column="40" />
+      <File FileName="Assets\Assets\Scripts\GameController.cs" Line="19" Column="32" />
+      <File FileName="Assets\Assets\Scripts\CutsceneGameController.cs" Line="27" Column="63" />
+      <File FileName="Assets\Assets\Scripts\PlayerManager.cs" Line="64" Column="3" />
+      <File FileName="Assets\Assets\Scripts\CutsceneContinue.cs" Line="18" Column="51" />
+      <File FileName="Assets\Assets\Scripts\ExitShop.cs" Line="19" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

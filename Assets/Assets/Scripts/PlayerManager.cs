@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
 
 	void OnLevelWasLoaded(int level)
 	{
-		if (Application.loadedLevelName == "levelOne")
+		if (Application.loadedLevelName == "mainGame")
 		{
 			if (!isWearingSandals)
 			{
@@ -64,7 +64,7 @@ public class PlayerManager : MonoBehaviour
 
 		health = originalHealth;
 
-		if (Application.loadedLevelName == "levelOne")
+		if (Application.loadedLevelName == "mainGame")
 		{
 			playerInstance =
 				Instantiate

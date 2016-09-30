@@ -3,10 +3,19 @@ using System.Collections;
 
 public class ExitShop : MonoBehaviour
 {
-	public static string nameOfNextLevel;
-
 	public void Exit()
 	{
-		Application.LoadLevel("levelOne");
+		if (GameController.mosquitoNetPurchased)
+		{
+			CutsceneGameController.infoToShow = CutsceneGameController.bednetProtectedYouText;
+			CutsceneGameController.imageToShow = "bednet";
+		}
+		else
+		{
+			CutsceneGameController.infoToShow = CutsceneGameController.mosquitoBitYouText;
+			CutsceneGameController.imageToShow = "mosquitoBite";
+		}
+
+		Application.LoadLevel("cutscene");
 	}
 }
