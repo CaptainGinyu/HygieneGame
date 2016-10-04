@@ -6,7 +6,7 @@ public class CutsceneContinue : MonoBehaviour
 	public void Continue()
 	{
 		if (CutsceneGameController.infoToShow.Equals(CutsceneGameController.mosquitoBitYouText)
-			|| CutsceneGameController.infoToShow.Equals(CutsceneGameController.mosquitoBitYouText))
+			|| CutsceneGameController.infoToShow.Equals(CutsceneGameController.bednetProtectedYouText))
 		{
 			Application.LoadLevel("mainGame");
 		}

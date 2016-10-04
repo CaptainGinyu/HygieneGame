@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 	private float nextFireTime;
 	
 	private Camera2DFollow camera2DFollow;
+
+	private AudioSource audioSource;
 	
 	void Start() 
 	{
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
 		
 		camera2DFollow = GameObject.Find("Main Camera").AddComponent<Camera2DFollow>();
 		camera2DFollow.target = transform;
+
+		audioSource = GetComponent<AudioSource>();
 	}
 	
 	void OnDestroy()
@@ -67,6 +71,8 @@ public class PlayerController : MonoBehaviour
 				
 				if (currItemInItemManager is BulletItemController)
 				{
+					audioSource.Play();
+
 					Item itemSpawned =
 						Instantiate
 							(

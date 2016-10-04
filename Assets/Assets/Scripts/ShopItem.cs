@@ -27,6 +27,10 @@ public class ShopItem : MonoBehaviour
 		{
 			Debug.Log("You already have sandals!");
 		}
+		else if (shopItem.itemName == "bednet" && GameController.mosquitoNetPurchased)
+		{
+			Debug.Log("You already have a bednet");
+		}
 		else if (GameController.score >= price)
 		{
 			Debug.Log("purchased");
@@ -35,6 +39,10 @@ public class ShopItem : MonoBehaviour
 			if (shopItem.itemName == "sandals")
 			{
 				GameController.playerManager.toggleWearingSandals(true);
+			}
+			else if (shopItem.itemName == "bednet")
+			{
+				GameController.mosquitoNetPurchased = true;
 			}
 			else
 			{

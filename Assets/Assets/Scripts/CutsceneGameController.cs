@@ -22,6 +22,12 @@ public class CutsceneGameController : GameController
 			infoText.text = infoToShow;
 		}
 
+		if (infoToShow.Equals(mosquitoBitYouText))
+		{
+			GameController.playerManager.health -= 5;
+			GameController.UpdateHealthText();
+		}
+
 		if (imageToShow != null)
 		{
 			imageArea.texture = Resources.Load(imageToShow) as Texture;
