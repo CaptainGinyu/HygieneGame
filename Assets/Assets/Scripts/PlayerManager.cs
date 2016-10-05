@@ -84,6 +84,10 @@ public class PlayerManager : MonoBehaviour
 		{
 			Destroy(playerInstance);
 			Destroy(gameObject);
+			if (!Application.loadedLevelName.Equals("cutscene"))
+			{
+				Application.LoadLevel("gameOverScreen");
+			}
 		}
 	}
 

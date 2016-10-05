@@ -8,7 +8,14 @@ public class CutsceneContinue : MonoBehaviour
 		if (CutsceneGameController.infoToShow.Equals(CutsceneGameController.mosquitoBitYouText)
 			|| CutsceneGameController.infoToShow.Equals(CutsceneGameController.bednetProtectedYouText))
 		{
-			Application.LoadLevel("mainGame");
+			if (GameController.playerManager.health <= 0)
+			{
+				Application.LoadLevel("gameOverScreen");
+			}
+			else
+			{
+				Application.LoadLevel("mainGame");
+			}
 		}
 		else
 		{
