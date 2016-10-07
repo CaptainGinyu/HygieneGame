@@ -9,6 +9,11 @@ public class WaterCleaner : MonoBehaviour
 
 		if (possibleWaterSource != null)
 		{
+			if (!possibleWaterSource.isClean)
+			{
+				GameController.score += 2;
+				GameController.UpdateScoreText();
+			}
 			possibleWaterSource.isClean = true;
 			Destroy(gameObject);
 		}

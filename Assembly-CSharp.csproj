@@ -51,6 +51,9 @@
      <Compile Include="Assets\Assets\Scripts\Camera2DFollow.cs" />
      <Compile Include="Assets\Assets\Scripts\CutsceneContinue.cs" />
      <Compile Include="Assets\Assets\Scripts\CutsceneGameController.cs" />
+     <Compile Include="Assets\Assets\Scripts\DecideBetweenFireAndStove.cs" />
+     <Compile Include="Assets\Assets\Scripts\DecideWhichPondToShow.cs" />
+     <Compile Include="Assets\Assets\Scripts\DecideWhichWaterJugToShow.cs" />
      <Compile Include="Assets\Assets\Scripts\DirectionFacingMover.cs" />
      <Compile Include="Assets\Assets\Scripts\DirtyMaker.cs" />
      <Compile Include="Assets\Assets\Scripts\EnemyThatKillsFood.cs" />
@@ -58,6 +61,8 @@
      <Compile Include="Assets\Assets\Scripts\FoodHealthAffector.cs" />
      <Compile Include="Assets\Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Assets\Scripts\GameControllerForLevel.cs" />
+     <Compile Include="Assets\Assets\Scripts\GoToHomeScreen.cs" />
+     <Compile Include="Assets\Assets\Scripts\GoToMainGame.cs" />
      <Compile Include="Assets\Assets\Scripts\HealthAffector.cs" />
      <Compile Include="Assets\Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Assets\Scripts\ItemManager.cs" />
@@ -68,13 +73,12 @@
      <Compile Include="Assets\Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Assets\Scripts\PoopHealthAffector.cs" />
+     <Compile Include="Assets\Assets\Scripts\ResetScore.cs" />
      <Compile Include="Assets\Assets\Scripts\ShopItem.cs" />
      <Compile Include="Assets\Assets\Scripts\ShowFinalScore.cs" />
      <Compile Include="Assets\Assets\Scripts\SourceModifier.cs" />
      <Compile Include="Assets\Assets\Scripts\WaterCleaner.cs" />
      <Compile Include="Assets\Assets\Scripts\WaterSource.cs" />
-     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-     <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -87,10 +91,6 @@
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{9DE912A3-D455-E0E1-EDA4-AE0C1F90791C}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

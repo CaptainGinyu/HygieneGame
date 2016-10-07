@@ -23,13 +23,25 @@ public class ShopItem : MonoBehaviour
 
 	public void Purchase()
 	{
-		if (shopItem.itemName == "sandals" && GameController.playerManager.getIsWearingSandals ())
+		if (shopItem.itemName == "sandals" && GameController.playerManager.getIsWearingSandals())
 		{
-			Debug.Log("You already have sandals!");
+			Debug.Log ("You already have sandals!");
 		}
 		else if (shopItem.itemName == "bednet" && GameController.mosquitoNetPurchased)
 		{
-			Debug.Log("You already have a bednet");
+			Debug.Log ("You already have a bednet!");
+		}
+		else if (shopItem.itemName == "water filter" && GameController.waterFilterPurchased)
+		{
+			Debug.Log ("You already have a water filter!");
+		}
+		else if (shopItem.itemName == "water jug caps" && GameController.waterJugCapPurchased)
+		{
+			Debug.Log ("You already have water jug caps!");
+		}
+		else if (shopItem.itemName == "stove" && GameController.stovePurchased)
+		{
+			Debug.Log ("You already have a stove!");
 		}
 		else if (GameController.score >= price)
 		{
@@ -40,9 +52,21 @@ public class ShopItem : MonoBehaviour
 			{
 				GameController.playerManager.toggleWearingSandals(true);
 			}
+			else if (shopItem.itemName == "water filter")
+			{
+				GameController.waterFilterPurchased = true;
+			}
 			else if (shopItem.itemName == "bednet")
 			{
 				GameController.mosquitoNetPurchased = true;
+			}
+			else if (shopItem.itemName == "water jug caps")
+			{
+				GameController.waterJugCapPurchased = true;
+			}
+			else if (shopItem.itemName == "stove")
+			{
+				GameController.stovePurchased = true;
 			}
 			else
 			{

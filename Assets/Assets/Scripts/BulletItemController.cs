@@ -18,12 +18,14 @@ public class BulletItemController : Item
 	{
 		Killable killable = other.gameObject.GetComponent<Killable>();
 		if (killable != null) {
-			foreach (string potentialVictim in whatThisAffects) {
-				if (killable.nameOfThis.Equals (potentialVictim)) {
+			foreach (string potentialVictim in whatThisAffects)
+			{
+				if (killable.nameOfThis.Equals(potentialVictim))
+				{
 					Destroy (other.gameObject);
 					GameControllerForLevel.score += killable.pointsGivenIfKilled;
 					GameControllerForLevel.recordedPoints += killable.pointsGivenIfKilled;
-					GameControllerForLevel.UpdateScoreText ();
+					GameControllerForLevel.UpdateScoreText();
 					break;
 				}
 			}
