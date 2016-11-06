@@ -158,7 +158,7 @@ public class ItemManager : MonoBehaviour
 		if (currentItemIndex >= 0)
 		{
 			ItemAndQuantity currItemAndQuantity = itemList[currentItemIndex];
-			itemImageDisplayer.sprite = currItemAndQuantity.item.spriteToShowInItemManager;
+			itemImageDisplayer.sprite = currItemAndQuantity.item.itemImage;
 			itemQuantityDisplayer.text = currItemAndQuantity.quantity.ToString();
 		}
 		else

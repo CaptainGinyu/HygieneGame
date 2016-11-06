@@ -18,7 +18,7 @@ public class ShopItem : MonoBehaviour
 		itemImage = transform.Find("Item Image").GetComponent<Image>();
 		priceText.text = price.ToString();
 		nameText.text = shopItem.itemName;
-		itemImage.sprite = shopItem.spriteToShowInItemManager;
+		itemImage.sprite = shopItem.itemImage;
 	}
 
 	public void Purchase()

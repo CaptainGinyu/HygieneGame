@@ -8,7 +8,7 @@ public class BulletItemController : Item
 	public float howManySecondsThisItemLasts;
 	public float speed;
 	
-	override protected void Start()
+	protected virtual void Start()
 	{
 		GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * speed, 0);
 		Destroy(gameObject, howManySecondsThisItemLasts);

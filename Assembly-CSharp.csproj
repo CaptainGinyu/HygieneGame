@@ -76,7 +76,6 @@
      <Compile Include="Assets\Assets\Scripts\ResetScore.cs" />
      <Compile Include="Assets\Assets\Scripts\ShopItem.cs" />
      <Compile Include="Assets\Assets\Scripts\ShowFinalScore.cs" />
-     <Compile Include="Assets\Assets\Scripts\SourceModifier.cs" />
      <Compile Include="Assets\Assets\Scripts\WaterCleaner.cs" />
      <Compile Include="Assets\Assets\Scripts\WaterSource.cs" />
  <Reference Include="UnityEngine.UI">
