@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityStandardAssets._2D;
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 		{
 			if (GameController.playerManager.itemManager.NumberOfItemTypes() > 0)
 			{
-				Item currItemInItemManager = GameController.playerManager.itemManager.getCurrentItem();
+				Item currItemInItemManager = GameController.playerManager.itemManager.GetCurrentItem();
 				
 				if (currItemInItemManager is BulletItemController)
 				{

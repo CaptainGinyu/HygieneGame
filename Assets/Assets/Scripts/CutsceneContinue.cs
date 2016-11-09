@@ -15,6 +15,7 @@ public class CutsceneContinue : MonoBehaviour
 			else
 			{
 				Application.LoadLevel("mainGame");
+				GameControllerForLevel.pointsToEndLevel += 5;
 			}
 		}
 		else

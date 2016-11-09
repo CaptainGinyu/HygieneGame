@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+//ItemAndQuantity is exactly what it sounds like: It's a grouping of an item with a number value
 public class ItemAndQuantity
 {
 	public Item item;
@@ -15,17 +16,19 @@ public class ItemAndQuantity
 	}
 }
 
+//ItemManager is what manages the player's items
 public class ItemManager : MonoBehaviour
 {
-	private static List<ItemAndQuantity> itemList;
+	private static List<ItemAndQuantity> itemList; //List of items and their corresponding quantities
 
-	private Image itemImageDisplayer;
-	private Text itemQuantityDisplayer;
-	private Sprite emptyImage;
-	private static int currentItemIndex;
+	private Image itemImageDisplayer; //Unity component that displays image (in this case, an image of the item)
+	private Text itemQuantityDisplayer; //Unity component that displays text (in this case, text that shows a number)
+	private Sprite emptyImage; //represents a white space image
+	private static int currentItemIndex; //number that represents the item's place (ie. 0th place, 1st place, etc.)
 
-	private bool changeWeaponPressed;
+	private bool changeWeaponPressed; //tells you if the user pressed the change weapon button
 
+	//Shows the current item and quantity when the level loads
 	void OnLevelWasLoaded(int level)
 	{
 		itemImageDisplayer = GameObject.Find("Displayed Item").GetComponent<Image>();
@@ -33,6 +36,7 @@ public class ItemManager : MonoBehaviour
 		DisplayCurrentItem();
 	}
 
+	//prepares the item list at the start of the game
 	void Awake()
 	{
 		itemList = new List<ItemAndQuantity>();
@@ -46,11 +50,16 @@ public class ItemManager : MonoBehaviour
 
 	void Start()
 	{
+		//initialize the changeWeaponPressed variable to false because user hasn't pressed anything yet
+		//since this point is the start of the game
 		changeWeaponPressed = false;
 	}
 	
 	void Update()
 	{
+		//if user pressed the change weapon button, switch to the next item in the list
+		//and if the item in the list is already the last item, go back to the first item in the list (ie. wrap around).
+		//then store a true value in teh changeWeaponPressed variable
 		if (Input.GetAxisRaw("ChangeWeapon") > 0)
 		{
 			if (!changeWeaponPressed)
@@ -64,12 +73,17 @@ public class ItemManager : MonoBehaviour
 				}
 			}
 		}
+
+		//otherwise, store a false value in changeWeaponPressed because the user didn't press the change weapon button
 		else if (Input.GetAxisRaw("ChangeWeapon") == 0)
 		{
 			changeWeaponPressed = false;
 		}
 	}
 
+	//Adds items to our item list
+	//The item parameter specifies what type of item we want to add (ie. soap, chlorine), and quantity specifies how many of that item we
+	//want to add
 	public void AddItem(Item item, int quantity)
 	{
 		if (quantity > 0)
@@ -98,21 +112,7 @@ public class ItemManager : MonoBehaviour
 		}
 	}
 
-	public void RemoveItem(ItemAndQuantity item)
-	{
-		int listIndex = itemList.IndexOf(item);
-
-		itemList.Remove(item);
-
-		currentItemIndex = listIndex - 1;
-		if (itemList.Count > 0 && currentItemIndex < 0)
-		{
-			currentItemIndex = itemList.Count - 1;
-		}
-
-		DisplayCurrentItem();
-	}
-
+	//Removes a single item from our item list
 	public Item DispenseCurrentItem()
 	{
 		Item itemToDispense = null;
@@ -138,7 +138,8 @@ public class ItemManager : MonoBehaviour
 		return itemToDispense;
 	}
 
-	public Item getCurrentItem()
+	//Tells you what item is the player currently has selected
+	public Item GetCurrentItem()
 	{
 		if (currentItemIndex >= 0)
 		{
@@ -148,11 +149,13 @@ public class ItemManager : MonoBehaviour
 		return null;
 	}
 
+	//Tells you the number of item types in our item list
 	public int NumberOfItemTypes()
 	{
 		return itemList.Count;
 	}
 
+	//Show the current item
 	public void DisplayCurrentItem()
 	{
 		if (currentItemIndex >= 0)

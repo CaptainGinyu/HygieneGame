@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameControllerForLevel : GameController
 {
-	public int pointsToEndLevel;
+	public static int pointsToEndLevel = 20;
 
 	public static float recordedPoints;
 
