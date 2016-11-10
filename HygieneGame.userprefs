@@ -1,10 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Assets\Scripts\CutsceneContinue.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Assets\Scripts\WalkingAnimationController.cs">
     <Files>
-      <File FileName="Assets\Assets\Scripts\BulletItemController.cs" Line="11" Column="20" />
-      <File FileName="Assets\Assets\Scripts\CutsceneContinue.cs" Line="18" Column="50" />
-      <File FileName="Assets\Assets\Scripts\GameControllerForLevel.cs" Line="7" Column="41" />
+      <File FileName="Assets\Assets\Scripts\PlayerManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Assets\Scripts\BulletItemController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Assets\Scripts\CutsceneContinue.cs" Line="1" Column="1" />
+      <File FileName="Assets\Assets\Scripts\GameControllerForLevel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Assets\Scripts\Mover.cs" Line="1" Column="1" />
+      <File FileName="Assets\Assets\Scripts\BoundedMover.cs" Line="32" Column="2" />
+      <File FileName="Assets\Assets\Scripts\PlayerController.cs" Line="113" Column="12" />
+      <File FileName="Assets\Assets\Scripts\WalkingAnimationController.cs" Line="22" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
